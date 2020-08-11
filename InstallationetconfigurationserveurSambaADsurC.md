@@ -242,7 +242,7 @@ organisation (ici  dc1.domaine.lan) :
 
 ###  
 
-### Configurer Samba {
+### Configurer Samba 
 
 #### Effacer le fichier /etc/smb/smb.conf s’il a déjà été généré 
 
