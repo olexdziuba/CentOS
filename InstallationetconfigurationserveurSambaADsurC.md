@@ -25,12 +25,12 @@ Configuration réseau:
 ------------------------
 
 -   modifier le fichier /etc/hostname et changer hostname: 
-     `Code`vim  /etc/hostname 
--   vérifier: `Code` cat /etc/hostname
+     `vim  /etc/hostname`
+-   vérifier: `cat /etc/hostname`
 
 ![](images/image2.png)
 
--   changer /etc/hosts: vim /etc/hosts
+-   changer `/etc/hosts: vim /etc/hosts`
 
  (pas modifier les lignes contenant localhost )
 
