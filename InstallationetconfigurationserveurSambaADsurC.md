@@ -277,7 +277,7 @@ dns forwarder = 1.1.1.1
 
 ![](images/image4.png)
 
-#### Reconfigurer la résolution DNS pour la machine locale. {#h.lnp8w4di457 .c24}
+#### Reconfigurer la résolution DNS pour la machine locale.
 
  Dans le fichier /etc/sysconfig/network-scripts/ifcfg-xxxx de
 l’interface réseau, remplacer la ligne suivante :\
