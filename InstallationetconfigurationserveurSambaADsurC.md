@@ -24,9 +24,9 @@ Configuration réseau:
 1.1 Changement hostname: 
 ------------------------
 
--   modifier le fichier /etc/hostname et changer hostname: vim
-    /etc/hostname 
--   vérifier: cat /etc/hostname
+-   modifier le fichier /etc/hostname et changer hostname: 
+     `Code`vim  /etc/hostname 
+-   vérifier: `Code` cat /etc/hostname
 
 ![](images/image2.png)
 
