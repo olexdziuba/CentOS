@@ -1,73 +1,8 @@
- *Installation et configuration de serveur Samba-AD sur CentOS7
+ 
+Installation et configurtion de serveur Samba-AD sur CentOS7
+------------------------
 
-[1.Préparation de CentOS7](#h.oigy7t4tk0fm)
-
-[1.1 Changement hostname:](#h.2irs9lwd0sg)
-
-[1.2 Configurer l’adresse IP (statique)](#h.1lvjsvxyd95r)
-
-[1.3 Désactivation SELinux](#h.t95i4chihgzg)
-
-[Activer le mode routeur et le NAT](#h.7ijys1cqnx9k)
-
-[Enable NAT](#h.a8skjl4726pj)
-
-[Installation Samba-AD](#h.et2chleub7ak)
-
-[Configurer les règles de pare-feu :](#h.v2ccwgnuliuo)
-
-[Désactiver avahi-daemon (protocol mDNS / bonjour) :](#h.ihutl7m3n9l5)
-
-[Ajouter repo EPEL](#h.xhrrao26uu31)
-
-[Récupérer les paquets nécessaires](#h.27d9kchjvqd1)
-
-[vérifier l’emprunte de la clef avec sha256sum :](#h.yylj1jv9j7u)
-
-[installer les paquets Samba-AD pour CentOS :](#h.iuq7d9kqbfxw)
-
-[Instancier le domaine Active Directory Samba](#h.ixl35tgv2oa9)
-
-[Configurer Kerberos](#h.bqed2r1h9awo)
-
-[Configurer Samba](#h.8vnmtyb5535f)
-
-[Effacer le fichier /etc/smb/smb.conf s’il a déjà été
-généré](#h.4nu4yoyucufb)
-
-[Configurer Samba avec le rôle de contrôleur de
-domaine.](#h.g4buw44abzv7)
-
-[Réinitialiser le mot de passe administrator :](#h.cxkzmnnphiu8)
-
-[Vérifier la ligne dns forwarder = xxx.xxx.xxx.xxx.dans votre fichier
-/etc/samba/smb.conf](#h.r58srng0pk2s)
-
-[Reconfigurer la résolution DNS pour la machine locale.](#h.lnp8w4di457)
-
-[Il faut supprimer /var/lib/samba/private/krb5.conf et le remplacer par
-un lien symbolique vers le fichier /etc/krb5.conf :](#h.vcbfpt6ekuck)
-
-[Activer Samba pour qu’il démarre automatiquement au prochain reboot
-:](#h.dpfyvnalqg7w)
-
-[redémarrer la machine](#h.uoixg5aiuuuu)
-
-[Tester que le kerberos](#h.9ubcx3vbbx79)
-
-[Tester les DNS :](#h.uzc1ngycscng)
-
-[Joindre une machine au domaine, installation RSAT](#h.tw3j3rrdju16)
-
-[Installation Windows 7](#h.c6l1648nyy6r)
-
-[Joindre Windows au domaine](#h.yxyl1vjnrwrb)^[[1]](#ftnt1)^
-
-[Vérification finale](#h.5mcz4bsg1soq)
-
-[Mes sources d’inspiration:](#h.wxfz4re6s2db)
-
-1.Préparation de CentOS7 {#h.oigy7t4tk0fm .c30}
+1.Préparation de CentOS7 
 ------------------------
 
 Configuration:
@@ -86,7 +21,7 @@ Configuration réseau:
 
         Windows7: eth0: 192.168.64.10/24 (interne)
 
-1.1 Changement hostname: {#h.2irs9lwd0sg .c30}
+1.1 Changement hostname: 
 ------------------------
 
 -   modifier le fichier /etc/hostname et changer hostname: vim
