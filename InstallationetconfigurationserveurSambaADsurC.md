@@ -1,5 +1,4 @@
-
- # Installation et configuration de serveur Samba-AD sur CentOS7
+ *Installation et configuration de serveur Samba-AD sur CentOS7
 
 [1.Préparation de CentOS7](#h.oigy7t4tk0fm)
 
