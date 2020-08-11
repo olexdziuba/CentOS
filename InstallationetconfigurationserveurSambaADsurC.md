@@ -7,24 +7,24 @@ Installation et configurtion de serveur Samba-AD sur CentOS7
 
 Configuration:
 
- dc1.domaine.lan
+ `dc1.domaine.lan`
 
-administrateur CentOS:root
+administrateur CentOS:`root`
 
-administrateur SAMBA: administrator
+administrateur SAMBA: `administrator`
 
 Configuration réseau:
 
-        CentOS: eth0: NAT, DHCP (accès internet)
+        CentOS: eth0: `NAT, DHCP (accès internet)
 
-                    eth1: 192.168.64.1/24 (interne)
+                    eth1: 192.168.64.1/24 (interne)`
 
-        Windows7: eth0: 192.168.64.10/24 (interne)
+        Windows7: eth0: `192.168.64.10/24 (interne)`
 
 1.1 Changement hostname: 
 ------------------------
 
--   modifier le fichier /etc/hostname et changer hostname: 
+-   modifier le fichier `/etc/hostname` et changer hostname: 
      `vim  /etc/hostname`
 -   vérifier: `cat /etc/hostname`
 
@@ -47,7 +47,7 @@ j’utilise:
 
 eth0 (ens32 pour vmware) - DHCP pour avoir acces internet
 
-/etc/sysconfig/network-scripts
+`/etc/sysconfig/network-scripts`
 
 ![](images/image8.png)
 
@@ -55,7 +55,7 @@ eth1 (ens33 pour vmware) static
 
 ip 192.168.64.1/24
 
-/etc/sysconfig/network-scripts
+`/etc/sysconfig/network-scripts`
 
 ![](images/image12.png)
 
@@ -70,9 +70,9 @@ Pour vérification configuration: ip a
 
 Vérifier que SELinux est désactivé :
 
-vim /etc/selinux/config
+`vim /etc/selinux/config`
 
-selinux=disabled
+`selinux=disabled`
 
 ![](images/image16.png)
 
@@ -80,7 +80,7 @@ Faite reboot.
 
  Vérifier status selinux avec commande
 
- sestatus
+ `sestatus`
 
 ![](images/image9.png)
 
