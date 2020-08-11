@@ -15,9 +15,9 @@ administrateur SAMBA: `administrator`
 
 Configuration réseau:
 
-        CentOS: eth0: `NAT, DHCP (accès internet)
+        CentOS: eth0: `NAT, DHCP (accès internet)`
 
-                    eth1: 192.168.64.1/24 (interne)`
+                    `eth1: 192.168.64.1/24 (interne)`
 
         Windows7: eth0: `192.168.64.10/24 (interne)`
 
@@ -53,7 +53,7 @@ eth0 (ens32 pour vmware) - DHCP pour avoir acces internet
 
 eth1 (ens33 pour vmware) static
 
-ip 192.168.64.1/24
+`ip 192.168.64.1/24`
 
 `/etc/sysconfig/network-scripts`
 
@@ -61,9 +61,9 @@ ip 192.168.64.1/24
 
 Pas proxy!
 
-Pour configurer réseau on peut aussi  utiliser nmtui
+Pour configurer réseau on peut aussi  utiliser `nmtui`
 
-Pour vérification configuration: ip a
+Pour vérification configuration: `ip a`
 
 1.3 Désactivation SELinux 
 -------------------------
@@ -76,7 +76,7 @@ Vérifier que SELinux est désactivé :
 
 ![](images/image16.png)
 
-Faite reboot.
+Faite `reboot`.
 
  Vérifier status selinux avec commande
 
@@ -89,21 +89,21 @@ Activer le mode routeur et le NAT
 
 Pour ajouter temporairement :
 
-sysctl -w net.ipv4.ip\_forward=1
+`sysctl -w net.ipv4.ip\_forward=1`
 
 Pour faire changement permanent il faut ajouter dans file:
 
-vim /usr/lib/sysctl.d/50-default.conf
+`vim /usr/lib/sysctl.d/50-default.conf`
 
-net.ipv4.ip\_forward = 1into file
+`net.ipv4.ip\_forward = 1into file`
 
 ![](images/image3.png)
 
 pour appliquer changement:
 
-/sbin/sysctl -p
+`/sbin/sysctl -p`
 
-or reboot
+or `reboot`
 
 #### Enable NAT
 
@@ -113,17 +113,18 @@ le serveur de passerelle.
 IP masquerading doit être activé avec iptables (utiliser bon IP et carte
 réseau).
 
-firewall-cmd --permanent --direct --passthrough ipv4 -t nat -I
-POSTROUTING -o eth0 -j MASQUERADE -s 192.168.64.0/24
+`firewall-cmd --permanent --direct --passthrough ipv4 -t nat -I`
+`POSTROUTING -o eth0 -j MASQUERADE -s 192.168.64.0/24`
 
-firewall-cmd --reload
+`firewall-cmd --reload`
 
-![](images/image14.png)
+![](images/image14.png)`
+
 
 Pour pour vérification (après installation Windows et joindre une
 machine au domaine):
 
-ping 8.8.8.8
+`ping 8.8.8.8`
 
 ![](images/image15.png)
 
@@ -132,41 +133,41 @@ Installation Samba-AD
 
 ### Configurer les règles de pare-feu (plus info [ici](https://www.google.com/url?q=https://wiki.samba.org/index.php/Samba_AD_DC_Port_Usage&sa=D&ust=1597182781635000&usg=AOvVaw1QZNxgB27e_1fbPmoUJQVz)) : 
 
-systemctl start firewalld
+`systemctl start firewalld`
 
-systemctl enable firewalld
+`systemctl enable firewalld`
 
-firewall-cmd --zone=public --add-port=53/tcp --add-port=53/udp
---permanent
+`firewall-cmd --zone=public --add-port=53/tcp --add-port=53/udp`
+`--permanent`
 
-firewall-cmd --zone=public --add-port=88/tcp --add-port=88/udp
---permanent
+`firewall-cmd --zone=public --add-port=88/tcp --add-port=88/udp`
+`--permanent`
 
-firewall-cmd --zone=public --add-port=135/tcp --permanent
+`firewall-cmd --zone=public --add-port=135/tcp --permanent`
 
-firewall-cmd --zone=public --add-port=389/tcp --add-port=389/udp
---permanent
+`firewall-cmd --zone=public --add-port=389/tcp --add-port=389/udp`
+`--permanent`
 
-firewall-cmd --zone=public --add-port=445/tcp --permanent
+`firewall-cmd --zone=public --add-port=445/tcp --permanent`
 
-firewall-cmd --zone=public --add-port=464/tcp --add-port=464/udp
---permanent
+`firewall-cmd --zone=public --add-port=464/tcp --add-port=464/udp`
+`--permanent`
 
-firewall-cmd --zone=public --add-port=636/tcp --permanent
+`firewall-cmd --zone=public --add-port=636/tcp --permanent`
 
-firewall-cmd --zone=public --add-port=3268/tcp --permanent
+`firewall-cmd --zone=public --add-port=3268/tcp --permanent`
 
-firewall-cmd --zone=public --add-port=3269/tcp --permanent
+`firewall-cmd --zone=public --add-port=3269/tcp --permanent`
 
-firewall-cmd --zone=public --add-port=50000-51000/tcp --permanent
+`firewall-cmd --zone=public --add-port=50000-51000/tcp --permanent`
 
-firewall-cmd --zone=public --add-port=49152-65535/tcp --permanent
+`firewall-cmd --zone=public --add-port=49152-65535/tcp --permanent`
 
-systemctl restart firewalld
+`systemctl restart firewalld`
 
 Pour vérification:
 
-firewall-cmd --list-ports
+`firewall-cmd --list-ports`
 
 ### Désactiver avahi-daemon (protocol mDNS / bonjour) : 
 
