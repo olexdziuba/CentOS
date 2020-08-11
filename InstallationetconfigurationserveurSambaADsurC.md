@@ -36,11 +36,11 @@ Configuration réseau:
 
 ![](images/image10.png)
 
-\
+
 
 * * * * *
 
-1.2 Configurer l’adresse IP (statique) {#h.1lvjsvxyd95r .c87}
+1.2 Configurer l’adresse IP (statique) 
 --------------------------------------
 
 j’utilise:
@@ -65,7 +65,7 @@ Pour configurer réseau on peut aussi  utiliser nmtui
 
 Pour vérification configuration: ip a
 
-1.3 Désactivation SELinux {#h.t95i4chihgzg .c30}
+1.3 Désactivation SELinux 
 -------------------------
 
 Vérifier que SELinux est désactivé :
@@ -84,7 +84,7 @@ Faite reboot.
 
 ![](images/image9.png)
 
-Activer le mode routeur et le NAT {#h.7ijys1cqnx9k .c65}
+Activer le mode routeur et le NAT 
 ---------------------------------
 
 Pour ajouter temporairement :
@@ -105,7 +105,7 @@ pour appliquer changement:
 
 or reboot
 
-#### Enable NAT {#h.a8skjl4726pj .c81}
+#### Enable NAT
 
 Le nœud interne doit maintenant pouvoir accéder à l'Internet public via
 le serveur de passerelle.
@@ -127,10 +127,10 @@ ping 8.8.8.8
 
 ![](images/image15.png)
 
-Installation Samba-AD {#h.et2chleub7ak .c65}
+Installation Samba-AD 
 ---------------------
 
-### Configurer les règles de pare-feu (plus info [ici](https://www.google.com/url?q=https://wiki.samba.org/index.php/Samba_AD_DC_Port_Usage&sa=D&ust=1597182781635000&usg=AOvVaw1QZNxgB27e_1fbPmoUJQVz)) : {#h.v2ccwgnuliuo .c76}
+### Configurer les règles de pare-feu (plus info [ici](https://www.google.com/url?q=https://wiki.samba.org/index.php/Samba_AD_DC_Port_Usage&sa=D&ust=1597182781635000&usg=AOvVaw1QZNxgB27e_1fbPmoUJQVz)) : 
 
 systemctl start firewalld
 
@@ -168,13 +168,13 @@ Pour vérification:
 
 firewall-cmd --list-ports
 
-### Désactiver avahi-daemon (protocol mDNS / bonjour) : {#h.ihutl7m3n9l5 .c18 .c43}
+### Désactiver avahi-daemon (protocol mDNS / bonjour) : 
 
 systemctl stop avahi-daemon.service avahi-daemon.socket
 
 systemctl disable avahi-daemon.service avahi-daemon.socket
 
-### Ajouter repo EPEL {#h.xhrrao26uu31 .c60}
+### Ajouter repo EPEL 
 
 yum update -y
 
@@ -183,7 +183,7 @@ yum install -y epel-release
 yum install -y wget sudo screen nmap telnet tcpdump rsync net-tools
 bind-utils htop
 
-### Récupérer les paquets nécessaires {#h.27d9kchjvqd1 .c60}
+### Récupérer les paquets nécessaires 
 
 récupérer la clef de signature RPM et configuration d’un dépôt YUM :\
 wget -O /etc/pki/rpm-gpg/RPM-GPG-KEY-TISSAMBA-7
@@ -202,23 +202,23 @@ gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-TISSAMBA-7" \>
 /etc/yum.repos.d/tissamba.repo
 
-### vérifier l’emprunte de la clef avec sha256sum : {#h.yylj1jv9j7u .c60}
+### vérifier l’emprunte de la clef avec sha256sum : 
 
 sha256sum /etc/pki/rpm-gpg/RPM-GPG-KEY-TISSAMBA-7
 
 b3cd8395e3d211a8760e95b9bc239513e9384d6c954d17515ae29c18d32a4a11
  /var/www/samba/RPM-GPG-KEY-TISSAMBA-7
 
-### installer les paquets Samba-AD pour CentOS : {#h.iuq7d9kqbfxw .c60}
+### installer les paquets Samba-AD pour CentOS : 
 
 yum install -y samba samba-winbind samba-winbind-clients
 krb5-workstation ldb-tools bind chrony bind-utils samba-client
 python3-crypto
 
-Instancier le domaine Active Directory Samba {#h.ixl35tgv2oa9 .c65}
+Instancier le domaine Active Directory Samba 
 --------------------------------------------
 
-### Configurer Kerberos {#h.bqed2r1h9awo .c60}
+### Configurer Kerberos 
 
 Modifier le fichier /etc/krb5.conf et remplacer tout son contenu par les
 4 lignes suivantes en précisant le domaine Active Directory de votre
@@ -240,11 +240,11 @@ organisation (ici  dc1.domaine.lan) :
 
   }
 
-###  {#h.tfno3nt3tad3 .c8}
+###  
 
-### Configurer Samba {#h.8vnmtyb5535f .c18 .c53}
+### Configurer Samba {
 
-#### Effacer le fichier /etc/smb/smb.conf s’il a déjà été généré {#h.4nu4yoyucufb .c24}
+#### Effacer le fichier /etc/smb/smb.conf s’il a déjà été généré 
 
 (il sera régénéré par la commande d’instanciation) :
 
@@ -252,7 +252,7 @@ organisation (ici  dc1.domaine.lan) :
 
 rm -f /etc/samba/smb.conf
 
-#### Configurer Samba avec le rôle de contrôleur de domaine. {#h.g4buw44abzv7 .c24}
+#### Configurer Samba avec le rôle de contrôleur de domaine. 
 
  Dans la ligne qui suit, vous penserez à changer à la fois le nom du
 royaume kerberos, et le nom court du domaine (nom netbios) :
@@ -260,13 +260,13 @@ royaume kerberos, et le nom court du domaine (nom netbios) :
 samba-tool domain provision --realm=MYDOMAINE.LAN --domain MYDOMAINE
 --server-role=dc
 
-#### Réinitialiser le mot de passe administrator : {#h.cxkzmnnphiu8 .c24}
+#### Réinitialiser le mot de passe administrator : 
 
-####  {#h.88esn1oh5wb4 .c24 .c78}
+####  
 
 samba-tool user setpassword administrator
 
-#### Vérifier la ligne dns forwarder = xxx.xxx.xxx.xxx.dans votre fichier /etc/samba/smb.conf {#h.r58srng0pk2s .c24}
+#### Vérifier la ligne dns forwarder = xxx.xxx.xxx.xxx.dans votre fichier /etc/samba/smb.conf 
 
 vim /etc/samba/smb.conf
 
@@ -289,25 +289,24 @@ Relancer NetworkManager pour prendre en compte les changements
 
 systemctl restart NetworkManager
 
-#### Il faut supprimer /var/lib/samba/private/krb5.conf et le remplacer par un lien symbolique vers le fichier /etc/krb5.conf : {#h.vcbfpt6ekuck .c24}
+#### Il faut supprimer /var/lib/samba/private/krb5.conf et le remplacer par un lien symbolique vers le fichier /etc/krb5.conf : 
 
  rm -f /var/lib/samba/private/krb5.conf
 
 ln -s /etc/krb5.conf /var/lib/samba/private/krb5.conf
 
-#### Activer Samba pour qu’il démarre automatiquement au prochain reboot : {#h.dpfyvnalqg7w .c24}
-
+#### Activer Samba pour qu’il démarre automatiquement au prochain reboot : 
 systemctl enable samba
 
 systemctl start samba
 
-#### redémarrer la machine {#h.uoixg5aiuuuu .c24}
+#### redémarrer la machine 
 
 reboot
 
  
 
-#### Tester que le kerberos {#h.9ubcx3vbbx79 .c24}
+#### Tester que le kerberos 
 
 Taper le mot de passe du compte administrator que vous avez défini
 ci-dessus avec la commande samba-tool setpassword 
@@ -321,7 +320,7 @@ klist
 
 ![](images/image11.png)
 
-#### Tester les DNS : {#h.uzc1ngycscng .c18 .c89}
+#### Tester les DNS : 
 
 dig @localhost google.com
 
@@ -331,15 +330,15 @@ dig -t SRV @localhost \_ldap.\_tcp.domaine.lan
 
 ![](images/image13.png)
 
-Joindre une machine au domaine, installation RSAT {#h.tw3j3rrdju16 .c85}
+Joindre une machine au domaine, installation RSAT 
 -------------------------------------------------
 
-#### Installation Windows 7 {#h.c6l1648nyy6r .c24}
+#### Installation Windows 7 
 
 Il faut installer Windows ( Windows 7), configuration réseau: static,
 même range que CentOS7. (192.168.64.10/24)
 
-#### Joindre Windows au domaine {#h.yxyl1vjnrwrb .c18 .c84}
+#### Joindre Windows au domaine 
 
 Vous pouvez désormais joindre un poste client Windows dans votre nouveau
 domaine. Ajouter nom de l’ordinateur et domaine.Il faut utiliser
@@ -370,7 +369,7 @@ RSAT sont un bon complément à la ligne de commande.
 
 ![](images/image1.png)
 
-#### Vérification finale {#h.5mcz4bsg1soq .c24}
+#### Vérification finale 
 
 Une fois RSAT installé à partir de MMC vous pouvez avoir accès:
 
@@ -388,9 +387,9 @@ opérationnel.
 
 * * * * *
 
- {#h.g46vi5gu2ynn .c20}
+ 
 
-Mes sources d’inspiration: {#h.wxfz4re6s2db .c80}
+Mes sources d’inspiration: 
 --------------------------
 
 [https://linuxize.com/post/how-to-install-and-configure-samba-on-centos-7/](https://www.google.com/url?q=https://linuxize.com/post/how-to-install-and-configure-samba-on-centos-7/&sa=D&ust=1597182781662000&usg=AOvVaw2ZOHpU0vjB3DLt6tUpHhB_)
